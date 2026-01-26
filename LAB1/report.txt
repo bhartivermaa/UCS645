@@ -1,0 +1,12 @@
+System has 12 threads.
+
+Q1 DAXPY:
+The best performance was achieved with 4 threads.
+Beyond 4 threads, execution time increased due to thread management overhead and memory contention.
+Hence, increasing threads beyond optimal point does not always improve performance.
+
+Q2 Matrix:
+2D threading performed better than 1D.
+
+Q3 Pi:
+Parallel version is faster than serial.
