@@ -1,12 +1,37 @@
-System has 12 threads.
+Q1. DAXPY Loop
+Operation performed in each iteration: X[i] = a * X[i] + Y[i]
+Results:
+Threads	Time (seconds)
+4	0.001364
+8	0.001849
+12	0.010231
+>12	0.018478
 
-Q1 DAXPY:
-The best performance was achieved with 4 threads.
-Beyond 4 threads, execution time increased due to thread management overhead and memory contention.
-Hence, increasing threads beyond optimal point does not always improve performance.
+Observation:
+The minimum execution time was obtained with 4 threads, so the maximum speedup is achieved at 4 threads.
 
-Q2 Matrix:
-2D threading performed better than 1D.
+Reason:
+After a certain point, increasing the number of threads increases overhead due to thread scheduling, synchronization, and memory contention. Hence, performance degrades instead of improving.System has 12 threads.
 
-Q3 Pi:
-Parallel version is faster than serial.
+Q2. Matrix Multiplication
+Two parallel versions were implemented:
+
+1D Threading: Only the outer loop was parallelized.
+2D Threading: Two nested loops were parallelized using collapse(2).
+
+Observation:
+The 2D threaded version was faster than the 1D version because work was distributed more evenly among threads.
+
+Reason:
+In 2D threading, more independent operations run in parallel, reducing idle time of threads and improving load balance.
+
+Q3. Calculation of π
+
+The value of π was calculated using numerical integration and parallel reduction.
+Output:  Pi = 3.1415926536
+
+Observation:
+The parallel implementation significantly reduces execution time compared to the serial version.
+
+Reason:
+The loop iterations are divided among multiple threads, and partial results are combined using the reduction clause.
